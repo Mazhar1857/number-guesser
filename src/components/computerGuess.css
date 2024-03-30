@@ -1,0 +1,33 @@
+.computer-guess-container {
+    background-color: rgb(236, 236, 236, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid black;
+}
+
+
+.computer-score {
+    text-align: center;
+}
+
+.computer-guess {
+    font-size: 3em;
+}
+
+@media (min-width:50em) {
+    .computer-guess-container {
+        width: 20vw;
+        height: 100%;
+    }
+}
+
+@media (max-width:50em) {
+    .computer-guess-container {
+        width: 80vw;
+        aspect-ratio: 1.1;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,68 @@
+.human-guess-container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 0.5px solid black;
+}
+
+
+.guess {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.human-guess {
+    width: 35%;
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    border: 1px solid black;
+}
+
+.guess-btn {
+    width: 35%;
+}
+
+.decrement {
+    width: 50%;
+    aspect-ratio: 1.1;
+    border: 2px solid rgb(91, 137, 243, 1);
+    border-right-width: 0;
+    border-top-left-radius: 100vmax;
+    border-bottom-left-radius: 100vmax;
+}
+
+.increment {
+    width: 50%;
+    aspect-ratio: 1.1;
+    border: 2px solid rgb(91, 137, 243, 1);
+    border-top-right-radius: 100vmax;
+    border-bottom-right-radius: 100vmax;
+}
+
+@media (min-width:50em) {
+    .human-guess-container {
+        width: 20vw;
+        /* aspect-ratio: 0.91; */
+        height: 100%;
+    }
+}
+
+@media (max-width:50em) {
+
+    .human-guess-container {
+        width: 80vw;
+        aspect-ratio: 1.1;
+        margin: 0 auto;
+    }
+
+}
