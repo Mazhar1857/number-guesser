@@ -66,8 +66,7 @@
 
 @media (max-width:50em) {
     .game-container {
-        grid-auto-flow: row;
-        
+        grid-auto-flow: row;        
         gap: 1em;
     }
 

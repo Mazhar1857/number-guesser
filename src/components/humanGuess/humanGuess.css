@@ -61,8 +61,10 @@
 
     .human-guess-container {
         width: 80vw;
-        aspect-ratio: 1.1;
+        /* aspect-ratio: 1.1; */
+        height: 100%;
         margin: 0 auto;
+        gap: 1em;
     }
 
 }

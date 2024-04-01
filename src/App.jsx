@@ -1,13 +1,56 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './App.css'
-import ComputerGuess from './components/ComputerGuess';
-import HumanGuess from './components/HumanGuess';
+import ComputerGuess from './components/computerGuess/ComputerGuess';
+import HumanGuess from './components/humanGuess/HumanGuess';
 import Button from './components/Button';
+import { resetComputerGuess } from './components/computerGuess/computerGuessSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetHumanGuess } from './components/humanGuess/humanGuessSlice';
+import { resetTarget } from './components/targetSlice';
+import { resetResult } from './components/result';
+import Context from './context/Context';
+
 
 function App() {
+  const dispatch = useDispatch();
+  const [humanScore, setHumanScore] = useState(0);
+  const [compScore, setCompScore] = useState(0);
+
+  const result = useSelector(state => state.result);
 
   const [round, setRound] = useState(1);
-  const [target, setTarget] = useState(null);
+
+  const target = useSelector(state => state.target);
+
+  const nextBtn = useContext(Context);
+
+  const action = () => {
+    dispatch(resetComputerGuess());
+    dispatch(resetHumanGuess());
+    dispatch(resetTarget());
+    dispatch(resetResult());
+    setRound((pre) => {
+      return pre + 1
+    })
+    nextBtn.setStatus(false);
+
+  }
+
+  useEffect(() => {
+
+    if (result === 'human') {
+      setHumanScore((pre) => {
+        return pre + 1;
+      })
+    }
+
+    if (result === 'computer') {
+      setCompScore((pre) => {
+        return pre + 1;
+      })
+    }
+
+  }, [result]);
 
 
   return (
@@ -19,21 +62,21 @@ function App() {
 
         <section className='round-count'>
           <h2>Round {round}</h2>
-          <h3>Target Number: {target}</h3>
+          <h3 id='target'>Target Number: {target === null ? "?" : target}</h3>
         </section>
 
         <section className='game-container'>
           <div className='left'>
-            <ComputerGuess />
+            <ComputerGuess score={compScore} />
           </div>
           <div className='right'>
-            <HumanGuess />
+            <HumanGuess score={humanScore} />
           </div>
 
         </section>
 
         <section className='next-round-btn'>
-          <Button btn="Next round" />
+          <Button disable={!nextBtn.status} onclick={action} btn="Next round" />
         </section>
 
         <section className='footer-section'>
@@ -44,7 +87,7 @@ function App() {
             </div>
             <div className='footer-column'>
               <h3>Step 2</h3>
-              <p>Click "Make a Guess" to submit yourguess and see who won the round.</p>
+              <p>Click "Make a Guess" to submit your guess and see who won the round.</p>
             </div>
             <div className='footer-column'>
               <h3>Step 3</h3>
